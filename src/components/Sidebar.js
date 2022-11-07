@@ -107,7 +107,7 @@ const Sidebar = ({isOpen,onClose,setIsOpen}) => {
         {isAmh ? "ቤት" : "Home"}
          </Link>
          <Link  onClick={onClose}
-         to={`/blog/scholarship/${ blogData?.data?.data?.data?.scholarships[0]?.article_category_id}`}  
+         to={`/blog/scholarship/${blogData?.data?.data?.data?.scholarships && blogData?.data?.data?.data?.scholarships[0]?.article_category_id}`}  
          className='font-semibold '>
          {isAmh ? "ስኮላርሺፕ" : "Scholarships"}
          </Link>

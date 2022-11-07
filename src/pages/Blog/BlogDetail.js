@@ -20,38 +20,55 @@ const headers = {
   Accept: "application/json",
   Authorization: `Bearer ${token}`,
 };
+// const blogDetailData = useQuery(
+//   "blogDataApi",
+//   async () =>
+//     await axios.get(`${process.env.REACT_APP_BACKEND_URL}articles/${id}`, {
+//       headers,
+//     }),
+//   {
+//     keepPreviousData: false,
+//     refetchOnWindowFocus: false,
+//     retry: false,
+//     enabled: !!token,
+//     onSuccess: () => {},
+//   }
+// );
 const blogDetailData = useQuery(
-  "blogDataApi",
+  ["blogDetailsDataApi", id],
   async () =>
-    await axios.get(`${process.env.REACT_APP_BACKEND_URL}articles/${id}`, {
-      headers,
-    }),
+    await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}articles/${id}`,
+      {
+        headers,
+      }
+    ),
   {
     keepPreviousData: false,
     refetchOnWindowFocus: false,
     retry: false,
     enabled: !!token,
-    onSuccess: () => {},
+    onSuccess: (res) => {},
   }
 );
 const handleChange=(id)=>{
   navigate(`/blog-details/${id}`)
  }
-const fechDetails=async()=>{
+const fetchDetails=async()=>{
   const datas = await axios.get(`${process.env.REACT_APP_BACKEND_URL}articles/${id}`,{headers})
   return datas?.data
 }
-const { isLoading, error, data } = useQuery(['blogs',id],fechDetails)
-// console.log(data?.data)
+const { isLoading, error, data } = useQuery(['blogs',id],fetchDetails)
+console.log(blogDetailData?.data?.data?.data?.article?.image)
   return (
     <div className='px-3 pt-24'>
-      {isLoading ? (
+      {blogDetailData.isLoading ? (
   <Center w={200}>
   <SpinnerLoader />
 </Center>
       ):(
         <div className='sm:max-w-6xl sm:mx-auto rounded-xl sm:m-2'>
-        <img src={process.env.REACT_APP_BACKEND_IMAGE_URL + data?.data?.article?.image}alt="" 
+        <img src={process.env.REACT_APP_BACKEND_IMAGE_URL + blogDetailData?.data?.data?.data?.article?.image}alt="" 
         className='h-[200px] md:h-[450px] w-full object-cover rounded-md'/> 
          <div className="relative sm:max-w-7xl grid grid-cols-1 md:grid-cols-12 gap-4 py-5">
          <div className='p-3 md:col-span-8 bg-white rounded-2xl flex flex-col space-y-5'>
@@ -60,15 +77,15 @@ const { isLoading, error, data } = useQuery(['blogs',id],fechDetails)
              <h3 className='font-normal bg-gray-100 rounded-md p-1 text-xs'># {isAmh ? item.titleAm : item.title}</h3>
           ))}
          </div>
-        <h1 className='font-bold text-sky-900 text-lg sm:text-2xl'>{isAmh ? data?.data?.article?.titleAm : data?.data?.article?.title} </h1>
-           <p className='font-normal text-[15px] text-zink-900'>{parse(isAmh ? data?.data?.article?.bodyAm : data?.data?.article?.body)} </p>
+        <h1 className='font-bold text-sky-900 text-lg sm:text-2xl'>{isAmh ? blogDetailData?.data?.data?.data?.article?.titleAm : blogDetailData?.data?.data?.data?.article?.title} </h1>
+           <p className='font-normal text-[15px] text-zink-900'>{parse(isAmh ? blogDetailData?.data?.data?.data?.article?.bodyAm : blogDetailData?.data?.data?.data?.article?.body)} </p>
          </div>
         
-         <div className='md:sticky h-[400px] top-10  w-full  md:col-span-4
+         <div className='md:sticky h-fit pb-3 top-18  w-full  md:col-span-4
               flex flex-col flex-grow    bg-white rounded-2xl overflow-y-scroll scrollbar-hide'>
                 <h1 className='bg-zinc-900 text-white p-3 rounded-t-2xl font-bold'>Related topics</h1>
             <div className='grid grid-cols-1 gap-2 p-2'>
-              {data?.data?.related_articles?.map((item)=>(
+              {blogDetailData?.data?.data?.data?.related_articles?.map((item)=>(
                 <div onClick={()=>handleChange(item.id)}
                 className='flex group items-start  shadow-lg rounded-md cursor-pointer '>
                    <img  src={process.env.REACT_APP_BACKEND_IMAGE_URL + item?.image} alt="category image" 

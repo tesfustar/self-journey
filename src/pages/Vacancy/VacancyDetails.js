@@ -47,7 +47,7 @@ const {id}=useParams()
 
 
     const fechDetails=async()=>{
-      const datas = await axios.get(`https://hulum.et/hulum2/api/selfJourney-vacancy/${id}`)
+      const datas = await axios.get(`http://admin.hulum.et/public/api/selfJourney-vacancy/${id}`)
       return datas?.data
     }
     const { isLoading, error, data } = useQuery(['vacancies',id],fechDetails)
@@ -69,7 +69,7 @@ const {id}=useParams()
   );
   
   const Vacancies = useQuery([`VacanciesApi`,currentPage],async () =>
-  await axios.get(`https://hulum.et/hulum2/api/selfJourney-vacancy?page=${currentPage}`),
+  await axios.get(`http://admin.hulum.et/public/api/selfJourney-vacancy?page=${currentPage}`),
 {
   keepPreviousData: false,
   refetchOnWindowFocus: false,

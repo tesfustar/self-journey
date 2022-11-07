@@ -13,7 +13,7 @@ import {TiInputChecked} from 'react-icons/ti'
 import {Spinner,Center} from "@chakra-ui/react";
 import {BiChevronDown,BiChevronUp} from 'react-icons/bi'
 import { Link } from 'react-scroll'
-const Navbar = ({toggle,handleModal}) => {
+const RegisterNav = ({toggle,handleModal}) => {
     const navigate = useNavigate();
     const { Category, setCategory, User,URL ,setVacancyId,vacancyId } = useHome();
     const { isAmh ,changeLang} = useContext(LangContext);
@@ -62,59 +62,14 @@ const Navbar = ({toggle,handleModal}) => {
      </div>
      {/* right part */}
      <div className='flex items-center space-x-7 sm:space-x-10'>
-     <Link to="test1" spy={true} smooth={true} offset={50} duration={500} 
-     className='hidden md:flex font-semibold hover:text-[#00a69c] cursor-pointer'>
-     {isAmh ? "እንዴት እንደሚሰራ" : "How it Works"}
-        </Link> 
-        
+  
        
-      
-       {/* vaccancy */}
-       <div className='hidden md:flex  flex-col  items-center justify-center group'>
-        <div className="flex items-center space-x-1 cursor-pointer hover:text-[#00a69c]">
-           <h1 className="font-semibold  ">{isAmh ?'አስስ' : 'Browse'}</h1>
-        <BiChevronDown size={20}/>
-        </div>
-         <div className='p-6 rounded-md absolute  bg-white shadow-lg top-16 z-50   hidden group-hover:flex group-hover:flex-col transition-all ease-out duration-300  '>
-             <div className="grid grid-cols-2 gap-3 ">
-             <div className="space-y-3 pl-3">
-             <h1 className="font-bold  pb-1">{isAmh ? 'ስራዎች':'Vacancies'}</h1>
-               <h1 onClick={handleModal} className="pl-3 font-medium cursor-pointer hover:text-sky-500">{isAmh ?'አካውንቲንግ እና ፋይናንስ' : 'Accounting and Finance'}</h1>
-               <h1 onClick={handleModal}  className="pl-3 font-medium cursor-pointer hover:text-sky-500">{isAmh? 'ምህንድስና':'Engineering'}</h1>
-               <h1 onClick={handleModal}  className="pl-3 font-medium cursor-pointer hover:text-sky-500">{isAmh? 'ሆቴል እና መስተንግዶ':'Hotel and Hospitality'}</h1>
-               <h1 onClick={handleModal}  className="pl-3 font-medium cursor-pointer hover:text-sky-500">{isAmh? 'ኢንፎርሜሽን ቴክኖሎጂ':'Information Technology'}</h1>
-             </div>
-             <div className=' flex flex-col justify-start items-start space-y-2'>
-          <h1 className="font-semibold">{isAmh ? "ሁሉም የጉዞ" : "All Journey's"}</h1>
-        {Journeys?.isFetched ? (
-      Journeys?.data?.data?.data.map((data) => (
-        <div className="" key={data.id}>
-          <h1  onClick={handleModal}
-          className="pl-3 font-medium cursor-pointer hover:text-sky-500">
-          {isAmh
-            ? data?.category?.nameAm
-              ? data?.category?.nameAm
-              : "ያልተገለጸ ጽሑፍ"
-            : data?.category?.name}
-          </h1>
-         </div>
-      ))
-          
-        ) : (
-          <Center w={200}>
-            <Spinner />
-          </Center>
-        )}
-
-        </div>
-             </div>
-         </div>
-       </div>
-     
-         <h1 onClick={handleModal} 
+     <h1 onClick={()=>{navigate('/login')}} 
           className='hidden md:flex text-white font-medium p-[5px] px-5 cursor-pointer bg-[#00a69c] hover:scale-105 transition-all ease-in-out duration-300 rounded-md'>
          {isAmh ? "ግባ" : "Sign in"}
          </h1>
+    
+     
          <div className='flex pr-5   items-center justify-center  flex-col group'>
          <AiFillSetting size={20} className="cursor-pointer"/>
          <div className='p-6 rounded-md absolute bg-white shadow-lg top-16 z-50   hidden group-hover:flex group-hover:flex-col transition-all ease-out duration-300  '>
@@ -156,4 +111,4 @@ const Navbar = ({toggle,handleModal}) => {
   )
 }
 
-export default Navbar
+export default RegisterNav

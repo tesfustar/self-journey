@@ -11,6 +11,7 @@
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.9.2",
     "@progress/kendo-react-layout": "^5.5.0",
+    "@szhsin/react-menu": "^3.2.0",
     "@tailwindcss/line-clamp": "^0.4.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",

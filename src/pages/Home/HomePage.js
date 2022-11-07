@@ -17,7 +17,7 @@ const HomePage = () => {
    const { Category, setCategory, User,recomendedData,setRecomendedData } = useHome();
    const { token,user } = useAuth();
    const Vacancies = useQuery(`VacanciesApi`,async () =>
-      await axios.get('https://hulum.et/hulum2/api/home-page'),
+      await axios.get('http://admin.hulum.et/public/api/home-page'),
     {
       keepPreviousData: false,
       refetchOnWindowFocus: false,
@@ -78,7 +78,7 @@ const HomePage = () => {
         },
       }
     );
-    console.log(  blogData?.data?.data?.data?.scholarships[0]?.article_category_id)
+    // console.log(  blogData?.data?.data?.data?.scholarships[0]?.article_category_id)
   return (
     <>
     <div className='max-w-6xl mx-auto '>
@@ -124,7 +124,9 @@ const HomePage = () => {
             )
           })
         ) : (
-          <SpinnerLoader />
+          <div className='w-full'>
+            <SpinnerLoader />
+          </div>
         )}
           </div>
    
@@ -228,7 +230,7 @@ const HomePage = () => {
         <div className=' flex -items-center justify-between p-3 " '>
           <h3 className="text-xl md:text-2xl font-bold text-black sm:px-0 flex-grow-0">Scholarships</h3>
           {/* <div className="outline-1  outline-black  flex-grow ">5</div> */}
-          <Link to={`/blog/scholarship/${ blogData?.data?.data?.data?.scholarships[0]?.article_category_id}`}>
+          <Link to={`/blog/scholarship/${blogData?.data?.data?.data?.scholarships && blogData?.data?.data?.data?.scholarships[0]?.article_category_id}`}>
             <div className='flex items-center hover:opacity-70 '>
             <h6 className='text-sm font-medium cursor-pointer text-[#16A4D3]' >{isAmh ? 'ሁሉም ይዩ' :'Browse All'}</h6>
             <BiChevronRight size={25} className='text-[#16A4D3]'/>

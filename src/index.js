@@ -22,16 +22,16 @@ const theme = extendTheme({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <QueryClientProvider client={queryClient}>
-  <AuthProvider>
     <BrowserRouter>
+  <AuthProvider>
      <ScrollToTop />
       <ChakraProvider  theme={theme}>
         <HomeProvider>
           <App />
         </HomeProvider>
       </ChakraProvider>
-    </BrowserRouter>
   </AuthProvider>
+    </BrowserRouter>
 </QueryClientProvider>,
 );
 

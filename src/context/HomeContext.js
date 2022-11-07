@@ -15,17 +15,18 @@ export function useHome() {
 
 export function HomeProvider({ children }) {
   //Hook
+  const [isModalOpen, setIsModalOpen] = useState(true);
   const [Category, setCategory] = useState("Recommended");
-  const [recomendedData,setRecomendedData]=useState([])
+  const [recomendedData, setRecomendedData] = useState([]);
   const [pages, setPages] = useState(2 + 2);
   const [User, setUser] = useState();
   const firstUpdate = useRef(true);
   const [URL, setURL] = useState();
   const [vacancyId, setVacancyId] = useState(null);
-  const [blogCategory,setBlogCategory]=useState(null)
-  
+  const [blogCategory, setBlogCategory] = useState(null);
+
   const mySet = new Set();
- 
+
   //Function
   function GetUser() {
     const res = JSON.parse(localStorage.getItem("user"));
@@ -42,15 +43,13 @@ export function HomeProvider({ children }) {
     }
     setURL(url);
   }, [Category]);
- console.log(URL)
+  console.log(URL);
   useEffect(() => {
     if (firstUpdate.current) {
       GetUser();
       return;
     }
   }, [User]);
-
-
 
   //Return
   return (
@@ -68,7 +67,10 @@ export function HomeProvider({ children }) {
         mySet,
         blogCategory,
         setBlogCategory,
-        recomendedData,setRecomendedData
+        recomendedData,
+        setRecomendedData,
+        isModalOpen,
+        setIsModalOpen,
       }}
     >
       {children}

@@ -22,10 +22,12 @@ import MobileBanner from "../../assets/MobileBanner.png";
 import LoginModal from './components/LoginModal';
 import SpinnerLoader from '../../utils/SpinnerLoader';
 import {Spinner,Center,useMediaQuery,} from "@chakra-ui/react";
+import { useHome } from '../../context/HomeContext';
 const LoginPage = () => {
   const { isAmh, changeLang } = useContext(LangContext);
   const [isLargerThan768] = useMediaQuery("(min-width: 768px )");
-  const [isModalOpen,setIsModalOpen] = useState(false)
+  // const [isModalOpen,setIsModalOpen] = useState(false)
+  const {isModalOpen,setIsModalOpen} = useHome()
   const handleModal=()=>{
     setIsModalOpen(!isModalOpen)
   }
@@ -335,8 +337,8 @@ const Journeys= useQuery(`LoginJourney`,async () =>
        </div>
       
     </div>
+     <LoginModal setIsModalOpen={setIsModalOpen} isModalOpen={isModalOpen} handleModal={handleModal}/>
      <Footer handleModal={handleModal}/>
-     <LoginModal isModalOpen={isModalOpen} handleModal={handleModal}/>
     
     </div>
   )

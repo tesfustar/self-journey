@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect } from "react";
 
 export const useLang = () => {
   //Hook
-  const [isAmh, setIsAmh] = useState(false);
+  const [isAmh, setIsAmh] = useState(true);
 
   //Function
   const changeLang = useCallback((isAmh) => {

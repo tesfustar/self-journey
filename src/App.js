@@ -4,8 +4,8 @@ import { useLang } from "./context/lang";
 import { LangContext } from "./context/LangContext";
 import { useAuth } from "./context/auth";
 import { Center, Spinner } from "@chakra-ui/react";
-import {HomePage,BlogDetail,BlogPage,AllJourneyPage,Success,JourneyPage,
-         Journey,LoginPage,VacancyDetails,VacancyPage,Scholarship} from './pages'
+import {HomePage,BlogDetail,BlogPage,AllJourneyPage,Success,JourneyPage,RegisterPage,
+         Journey,LoginPage,VacancyDetails,VacancyPage,Scholarship,Register} from './pages'
 import { Navbar ,Footer} from "./components";
 import './App.css';
 import loader from './assets/journey-walk.json'
@@ -22,8 +22,9 @@ const toggle=()=>{
 function LoginComp() {
   return (
     <Routes>
+      <Route path="*" element={<Navigate to="/register" />} />
+      <Route path="/register" element={<RegisterPage />} />
       <Route path="/login" element={<LoginPage />} />
-      <Route path="*" element={<Navigate to="/login" />} />
     </Routes>
   );
 }
@@ -59,7 +60,7 @@ function RoutComp() {
     return <HomeComp />;
   } 
    else {
-    return <HomeComp />;
+    return <LoginComp />;
   }
 }
   return (

@@ -44,10 +44,10 @@ export const Footer = () => {
     );
   
   return (
-    <>
-    <div className='bg-[#00a69c] '>
+    <div className="pt-20">
+    <div className='bg-[#00a69c]'>
       <div className='max-w-6xl   items-start text-center justify-center gap-7 text-md
-         mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 font-medium p-5 md:p-10'>
+         mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 font-medium p-5 md:p-10'>
         <div className=' flex flex-col justify-start items-start space-y-3'>
         <img src={Logo} alt=""  className='h-16 '/>
          </div>
@@ -142,7 +142,7 @@ export const Footer = () => {
       </div>
     </div>
     <TermsModal isOpen={isOpen} onClose={onClose}/>
-           </>
+           </div>
   )
 }
 

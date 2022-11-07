@@ -16,8 +16,10 @@ import AgreeModal from './AgreeModal';
 import RegisterModal from './RegisterModal'
 import Logo from "../../../assets/Self journey logo/Self journey horizontal.svg";
 import {FaTimes} from 'react-icons/fa'
-const LoginModal = ({ isModalOpen, handleModal }) => {
+const LoginModal = ({ isModalOpen, handleModal,setIsModalOpen ,phoneNo}) => {
     const [phone, setPhone, PhoneError] = useValidPhone();
+    const phoneNumber = localStorage.getItem("phoneNumber")
+    // const [phone, setPhone] = useState(phoneNumber ? phoneNumber : "")
     const [Register, setRegister] = useState(false);
     const [Agree, setAgree] = useState(false);
     const [isAgreed, setIsAgreed] = useState(false);
@@ -29,6 +31,7 @@ const LoginModal = ({ isModalOpen, handleModal }) => {
     const { isAmh, changeLang } = useContext(LangContext);
     const [isAgreeModalOpen,setIsAgreeModalOpen] = useState(false)
     const [isRegisterModalOpen,setIsRegisterModalOpen] = useState(false)
+    console.log({phoneNumber})
     const handleAgreeModal=()=>{
       setIsAgreeModalOpen(!isAgreeModalOpen)
     }
@@ -57,7 +60,8 @@ const LoginModal = ({ isModalOpen, handleModal }) => {
             });
             return;
           }
-          otpMutationSubmitHandler();
+          subscriberLoginSubmitHandler();
+          localStorage.setItem("phoneNumber",phone)
         } 
         else {
           if ([...Code].length != 6) {
@@ -94,7 +98,7 @@ const LoginModal = ({ isModalOpen, handleModal }) => {
           otpMutation.mutate(
             {
               phone: "251".concat(phone),
-              verificationCode: Code,
+              // verificationCode: Code,
             },
             {
               onSuccess: (responseData) => {
@@ -139,7 +143,7 @@ const LoginModal = ({ isModalOpen, handleModal }) => {
           loginMutation.mutate(
             {
               phone: "251".concat(phone),
-              password: Code,
+              // password: Code,
             },
             {
               onSuccess: (responseData) => {
@@ -174,7 +178,7 @@ const LoginModal = ({ isModalOpen, handleModal }) => {
                 console.log(err);
                 toast({
                   title: "Subscribe",
-                  description: loginMutation?.error?.response?.data?.message,
+                  description: err?.response?.data?.message,
                   status: "error",
                   duration: 1800,
                   isClosable: true,
@@ -187,11 +191,11 @@ const LoginModal = ({ isModalOpen, handleModal }) => {
         }
       };
     
-      console.log("loginMutation: ", { loginMutation, otpMutation });
+
   return (
     <div>
     <Transition appear show={isModalOpen} as={Fragment}>
-    <Dialog as="div" className=" relative z-50 " onClose={handleModal}>
+    <Dialog as="div" className=" relative z-50 " onClose={()=>setIsModalOpen(true)}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -243,7 +247,8 @@ const LoginModal = ({ isModalOpen, handleModal }) => {
              <div className='flex items-center     border-2 rounded-md border-[#00a69c] w-full'>
        <span className='border-r-2 border-[#00a69c]  rounded-l-md h-full flex flex-grow text-center px-2 items-center justify-center '>+251</span> 
       <input type="number" 
-         value={phone}
+        value={phone}
+       
          onChange={(event) => setPhone(event.target.value)}
       placeholder='9-********' name="phoneNo" 
       className='w-full flex-grow  bg-transparent border-none focus:border-none focus:ring-0    focus:outline-none' />
@@ -288,9 +293,9 @@ const LoginModal = ({ isModalOpen, handleModal }) => {
        </div>
     </div>
   )}
-<button onClick={LoginHandler}
+<button onClick={LoginHandler} disabled={otpMutation.isLoading || loginMutation.isLoading}
 className='bg-[#00a69c]  w-full p-2 px-4 text-white font-medium mt-2 rounded-md
-  hover:opacity-70 '>{otpMutation?.isLoading ?  <Spinner size='sm'/> : !hasPhone ?'Log in' : 'confirm'}</button>
+  hover:opacity-70 '>{loginMutation.isLoading ?  <Spinner size='sm'/>  : 'Log in'}</button>
    {!hasPhone  && <p className="font-normal text-sm py-6">Don't have account? 
    <span onClick={() => {setRegister(true);setIsRegisterModalOpen(true)}} className="font-semibold text-[#00a69c] cursor-pointer hover:underline"> Register</span></p>}
 </div>

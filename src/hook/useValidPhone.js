@@ -2,10 +2,10 @@ import { useContext, useMemo, useState } from "react";
 import { LangContext } from "../context/LangContext";
 
 export default function useValidPhone() {
-  const [phone, setPhone] = useState("");
+  const phoneNumber = localStorage.getItem("phoneNumber")
+  const [phone, setPhone] = useState(phoneNumber  ? phoneNumber : "");
   const [PhoneError, setPhoneError] = useState("");
   const { isAmh } = useContext(LangContext);
-
   useMemo(() => {
     if ([...phone].slice(0, 3).join("") == "251") {
       setPhoneError(isAmh ? "251 መጨመር አያስፈልግም" : "No need to add 251");
