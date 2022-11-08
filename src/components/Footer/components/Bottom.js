@@ -17,7 +17,15 @@ export default function Bottom() {
       px={"50px"}
       py={"10px"}
     >
-      <Text color="white">{isAmh ? "ውሎች እና ሁኔታዎች" : "Terms & Conditions"}</Text>
+      <Text
+        onClick={() => {
+          console.log("click");
+          navigate("/Termandcondition");
+        }}
+        color="white"
+      >
+        {isAmh ? "ውሎች እና ሁኔታዎች" : "Terms & Conditions"}
+      </Text>
       <HStack>
         <img src="https://img.icons8.com/material-outlined/18/ffffff/creative-commons-all-rights-reserved.png" />
         <Text color="white">2021</Text>
