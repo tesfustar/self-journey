@@ -22,8 +22,8 @@ const VacancyPage = () => {
     async () =>
       await axios.get(
         vacancyId
-          ? `http://admin.hulum.et/public/api/vacancy_categories/${vacancyId}?page=${currentPage}`
-          : `http://admin.hulum.et/public/api/selfJourney-vacancy?page=${currentPage}`
+          ? `https://admin.hulum.et/public/api/vacancy_categories/${vacancyId}?page=${currentPage}`
+          : `https://admin.hulum.et/public/api/selfJourney-vacancy?page=${currentPage}`
       ),
     {
       keepPreviousData: false,
@@ -48,7 +48,7 @@ const VacancyPage = () => {
     ["detailsDataApi", detailsId],
     async () =>
       await axios.get(
-        `http://admin.hulum.et/public/api/selfJourney-vacancy/${detailsId}`
+        `https://admin.hulum.et/public/api/selfJourney-vacancy/${detailsId}`
       ),
     {
       keepPreviousData: false,
@@ -62,7 +62,7 @@ const VacancyPage = () => {
   const VacancyCategory = useQuery(
     `CategoryApi`,
     async () =>
-      await axios.get("http://admin.hulum.et/public/api/vacancy_categories"),
+      await axios.get("https://admin.hulum.et/public/api/vacancy_categories"),
     {
       keepPreviousData: false,
       refetchOnWindowFocus: false,

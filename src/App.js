@@ -18,6 +18,7 @@ import {
   VacancyPage,
   Scholarship,
   Register,
+  HowTo
 } from "./pages";
 import { Navbar, Footer } from "./components";
 import "./App.css";
@@ -36,10 +37,11 @@ const App = () => {
   function LoginComp() {
     return (
       <Routes>
-        <Route path="*" element={<Navigate to="/register" />} />
+        <Route path="*" element={<Navigate to="/login" />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/Termandcondition" element={<TermsandConditions />} />
+        <Route path="/how-to" element={<HowTo />} />
       </Routes>
     );
   }
@@ -64,6 +66,7 @@ const App = () => {
           <Route path="/blog/scholarship/:id" element={<Scholarship />} />
           <Route path="/journey/success/:id" element={<Success />} />
           <Route path="/Termandcondition" element={<TermsandConditions />} />
+          <Route path="/how-to" element={<HowTo />} />
         </Routes>
         <Footer />
       </div>

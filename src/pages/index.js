@@ -9,6 +9,7 @@ export {default as AllJourneyPage } from './Journey/AllJourneyPage'
 export {default as LoginPage } from './Login/LoginPage'
 export {default as RegisterPage } from './Login/RegisterPage'
 export {default as Register } from './Login/Register'
+export {default as HowTo } from './Login/HowTo'
 
 export {default as VacancyDetails } from './Vacancy/VacancyDetails'
 export {default as VacancyPage } from './Vacancy/VacancyPage'

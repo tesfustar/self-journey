@@ -296,8 +296,17 @@ const LoginModal = ({ isModalOpen, handleModal,setIsModalOpen ,phoneNo}) => {
 <button onClick={LoginHandler} disabled={otpMutation.isLoading || loginMutation.isLoading}
 className='bg-[#00a69c]  w-full p-2 px-4 text-white font-medium mt-2 rounded-md
   hover:opacity-70 '>{loginMutation.isLoading ?  <Spinner size='sm'/>  : 'Log in'}</button>
-   {!hasPhone  && <p className="font-normal text-sm py-6">Don't have account? 
-   <span onClick={() => {setRegister(true);setIsRegisterModalOpen(true)}} className="font-semibold text-[#00a69c] cursor-pointer hover:underline"> Register</span></p>}
+    <div className="flex items-center justify-between">
+   {!hasPhone  && <p className="font-normal text-sm py-2">Don't have account? 
+   <span onClick={() => {setRegister(true);setIsRegisterModalOpen(true)}}
+    className="font-semibold text-[#00a69c] cursor-pointer 
+    hover:underline"> Register</span>
+    </p>}
+<span onClick={() => {navigate('/how-to')}}
+    className="font-semibold text-[#00a69c] cursor-pointer 
+    hover:underline">How to</span>
+
+    </div>
 </div>
   <p className="text-[#91A8A7] font-normal text-sm text-center flex items-center justify-center w-full">2022 all right reserved</p>
            </div>

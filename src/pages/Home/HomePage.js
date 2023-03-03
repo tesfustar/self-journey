@@ -17,7 +17,7 @@ const HomePage = () => {
    const { Category, setCategory, User,recomendedData,setRecomendedData } = useHome();
    const { token,user } = useAuth();
    const Vacancies = useQuery(`VacanciesApi`,async () =>
-      await axios.get('http://admin.hulum.et/public/api/home-page'),
+      await axios.get('https://admin.hulum.et/public/api/home-page'),
     {
       keepPreviousData: false,
       refetchOnWindowFocus: false,
@@ -25,6 +25,7 @@ const HomePage = () => {
       onSuccess: (res) => {},
     }
   );
+  console.log(Vacancies)
   const headers = {
     "Content-Type": "application/json",
     Accept: "application/json",
