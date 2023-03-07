@@ -8,13 +8,14 @@ import { Outlet, useLocation, useNavigate, Link } from "react-router-dom";
 import { Spinner, Center } from "@chakra-ui/react";
 import SpinnerLoader from "../../utils/SpinnerLoader";
 import { FaSearch } from "react-icons/fa";
+import { LangContext } from "../../context/LangContext";
 const VacancyPage = () => {
   const [vacancyData, setVacancyData] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [detailsId, setdetailsId] = useState(null);
   const [catId, setCatId] = useState(null);
   const navigate = useNavigate();
-  const { isAmh } = useLang();
+  const { isAmh } = useContext(LangContext);
   const { setVacancyId, vacancyId } = useHome();
   console.log(catId);
   const Vacancies = useQuery(
@@ -71,7 +72,7 @@ const VacancyPage = () => {
       onSuccess: (res) => {},
     }
   );
-  console.log({vacancyData});
+  
   return (
     <div>
       <div className="max-w-6xl mx-auto flex flex-col pt-28 ">
@@ -128,7 +129,7 @@ const VacancyPage = () => {
                     >
                       <div className="w-full flex items-center justify-between  ">
                         <span className="font-bold text-lg ">
-                          {item?.title}
+                          {!isAmh ? item.title_am : item?.title}
                         </span>
                         <span className="font-bold text-sm text-[#00a69c] ">
                           New
