@@ -129,7 +129,7 @@ const VacancyPage = () => {
                     >
                       <div className="w-full flex items-center justify-between  ">
                         <span className="font-bold text-lg ">
-                          {!isAmh ? item.title_am : item?.title}
+                          {isAmh ? item.title_am : item?.title}
                         </span>
                         <span className="font-bold text-sm text-[#00a69c] ">
                           New
