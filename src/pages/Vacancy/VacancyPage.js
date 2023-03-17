@@ -43,7 +43,7 @@ const VacancyPage = () => {
       },
     }
   );
-  console.log(Vacancies?.data?.data)
+  console.log(Vacancies?.data?.data);
   // details
   const detailsData = useQuery(
     ["detailsDataApi", detailsId],
@@ -119,12 +119,12 @@ const VacancyPage = () => {
             {/* jobs-grid */}
             <div className="w-full py-2 flex flex-col items-start space-y-2 my-3">
               {Vacancies.isFetched ? (
-                vacancyData?.length > 0 ?
-                vacancyData?.map((item) => {
-                  return (
-                    <div
-                      key={item?.id}
-                      className="relative flex flex-col bg-white hover:border hover:border-[#00a69c]
+                vacancyData?.length > 0 ? (
+                  vacancyData?.map((item) => {
+                    return (
+                      <div
+                        key={item?.id}
+                        className="relative flex flex-col bg-white hover:border hover:border-[#00a69c]
                flex-grow hover:scale-[1.02] transition-all ease-in-out duration-300 cursor-pointer w-full p-3 pb-12 rounded-md shadow-md space-y-2 border border-gray-300"
                     >
                       <div className="w-full flex items-center justify-between  ">
@@ -146,25 +146,25 @@ const VacancyPage = () => {
                         Due date:{item?.due_date}
                       </h1>
 
-                      <div className="absolute bottom-2 flex items-start  float-left pt-6">
-                        <button
-                          onClick={() => setdetailsId(item.id)}
-                          className="bg-[#00a69c]  p-1 px-5 font-medium text-white rounded-md hover:opacity-70"
-                        >
-                          {isAmh ? "ዝርዝር እይታ" : "View detail"}
-                        </button>
-                        {/* <Link to={`/vacancy-details/${item?.id}`} className="flex flex-grow ">
+                        <div className="absolute bottom-2 flex items-start  float-left pt-6">
+                          <button
+                            onClick={() => setdetailsId(item.id)}
+                            className="bg-[#00a69c]  p-1 px-5 font-medium text-white rounded-md hover:opacity-70"
+                          >
+                            {isAmh ? "ዝርዝር እይታ" : "View detail"}
+                          </button>
+                          {/* <Link to={`/vacancy-details/${item?.id}`} className="flex flex-grow ">
                    </Link> */}
+                        </div>
                       </div>
-                    </div>
-                  );
-                }) :
-                <div className="flex items-center justify-items-center p-5">
-                  <h1 className="font-medium text-2xl">No Vacancies Found</h1>
-                </div>
-              )
-              
-              : (
+                    );
+                  })
+                ) : (
+                  <div className="flex items-center justify-items-center p-5">
+                    <h1 className="font-medium text-2xl">No Vacancies Found</h1>
+                  </div>
+                )
+              ) : (
                 <Center width={"100%"} height={"70vh"}>
                   <SpinnerLoader />
                 </Center>
